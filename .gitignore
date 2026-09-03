@@ -1,0 +1,23 @@
+# Build outputs
+bin/
+obj/
+srpx/
+srpx-package/
+*.user
+
+# IDE / editor
+.vs/
+.vscode/
+.idea/
+*.swp
+
+# Local .NET SDK cache (keep out of repo if ever copied here)
+.dotnet/
+
+# Upstream SecRandom reference source & tarball (outside the repo, but be safe)
+secrandom_src/
+sr.tar.gz
+
+# OS
+Thumbs.db
+.DS_Store

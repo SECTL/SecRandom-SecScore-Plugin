@@ -1,0 +1,6 @@
+id: secscore.launcher
+name: SecScore Launcher
+entranceAssembly: SecScoreLauncher.dll
+apiVersion: 3.0.0
+version: 1.0.0
+author: SECTL
