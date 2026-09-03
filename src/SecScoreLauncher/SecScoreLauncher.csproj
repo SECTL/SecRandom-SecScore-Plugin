@@ -11,7 +11,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="$(SecRandomSourceDir)\SecRandom.PluginSdk\SecRandom.PluginSdk.csproj" />
+        <!-- Reference the SDK for compile-time types only; the host supplies Core/PluginSdk/Avalonia at
+             runtime, so their runtime assets (and Core's transitive deps) must not ship in the .srpx. -->
+        <ProjectReference Include="$(SecRandomSourceDir)\SecRandom.PluginSdk\SecRandom.PluginSdk.csproj">
+            <ExcludeAssets>runtime;native</ExcludeAssets>
+        </ProjectReference>
     </ItemGroup>
 
     <ItemGroup>
