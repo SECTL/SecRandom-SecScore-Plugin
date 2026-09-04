@@ -23,7 +23,7 @@ public sealed class SecScoreLauncherConfig
     public string ExePath { get; set; } = string.Empty;
 
     /// <summary>Tooltip label of the floating-window button.</summary>
-    public string ButtonLabel { get; set; } = "SecScore";
+    public string ButtonLabel { get; set; } = "积分";
 
     private void Load()
     {
