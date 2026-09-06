@@ -16,9 +16,9 @@ Windows-focused; on other platforms the button is a logged no-op.
 ## Requirements
 
 - .NET 10 SDK
-- The SecRandom source checkout (the SDK is not published, so the plugin compiles against it from
-  source). Our reference points at `D:\code\secrandom_src\SecRandom-master` via the
-  `<SecRandomSourceDir>` property in `src\SecScoreLauncher\SecScoreLauncher.csproj`.
+- A sibling SecRandom source checkout at `..\SecRandom` (the SDK is not published, so the plugin
+  compiles against it from source). Override `<SecRandomSourceDir>` with
+  `-p:SecRandomSourceDir=...` when using another directory layout.
 
 ## Build
 
@@ -28,7 +28,7 @@ slow). Two prerequisites:
 
 1. A .NET 10 SDK.
 2. The SecRandom source checkout at the path in `<SecRandomSourceDir>` in
-   `src/SecScoreLauncher/SecScoreLauncher.csproj` (default `..\..\..\secrandom_src\SecRandom-master`).
+   `src/SecScoreLauncher/SecScoreLauncher.csproj` (default `..\..\..\SecRandom`).
 
 On a machine with an up-to-date Windows you can build directly:
 

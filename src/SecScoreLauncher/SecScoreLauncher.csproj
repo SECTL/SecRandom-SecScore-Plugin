@@ -7,7 +7,8 @@
         <CreateSrpx>true</CreateSrpx>
         <IsPackable>false</IsPackable>
         <!-- The SDK is referenced from source because SecRandom.PluginSdk is not published to public feeds. -->
-        <SecRandomSourceDir>..\..\..\secrandom_src\SecRandom-master</SecRandomSourceDir>
+        <!-- Override with -p:SecRandomSourceDir=... for another checkout. -->
+        <SecRandomSourceDir Condition="'$(SecRandomSourceDir)' == ''">..\..\..\SecRandom</SecRandomSourceDir>
     </PropertyGroup>
 
     <ItemGroup>

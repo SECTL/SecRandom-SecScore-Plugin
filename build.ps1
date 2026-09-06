@@ -6,7 +6,8 @@
 #   for the runtime's safe handling. Running the compiler via the `dotnet` muxer (dotnet exec csc.dll)
 #   works. build.ps1 points the MSBuild Csc task at a small csc.cmd wrapper that does exactly that.
 #
-# Prereqs: a .NET 10 SDK on PATH, and the SecRandom source checkout (set $SecRandomSourceDir below).
+# Prereqs: a .NET 10 SDK on PATH and a sibling SecRandom source checkout. Override it with
+# -p:SecRandomSourceDir=... when using another layout.
 
 $ErrorActionPreference = "Stop"
 

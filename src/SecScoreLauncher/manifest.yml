@@ -1,5 +1,6 @@
 id: secscore.launcher
 name: SecScore Launcher
+description: 在 SecRandom 悬浮窗中启动或聚焦 SecScore。
 entranceAssembly: SecScoreLauncher.dll
 apiVersion: 3.0.0
 version: 1.0.0
