@@ -17,6 +17,8 @@ public sealed class SecScoreLauncherSettingsPage : UserControl
 {
     private readonly SecScoreLauncherConfig _config;
     private readonly TextBox _pathBox;
+    private readonly TextBox _apiUrlBox;
+    private readonly TextBox _apiTokenBox;
 
     public SecScoreLauncherSettingsPage(SecScoreLauncherConfig config)
     {
@@ -50,6 +52,29 @@ public sealed class SecScoreLauncherSettingsPage : UserControl
             Margin = new Thickness(0, 0, 0, 12)
         };
 
+        var apiUrlLabel = new TextBlock
+        {
+            Text = "SecScore REST API 地址",
+            Margin = new Thickness(0, 0, 0, 4)
+        };
+        _apiUrlBox = new TextBox
+        {
+            Text = _config.SecScoreApiUrl,
+            PlaceholderText = "http://127.0.0.1:18791",
+            Margin = new Thickness(0, 0, 0, 12)
+        };
+        var apiTokenLabel = new TextBlock
+        {
+            Text = "SecScore REST API Token（可选）",
+            Margin = new Thickness(0, 0, 0, 4)
+        };
+        _apiTokenBox = new TextBox
+        {
+            Text = _config.SecScoreApiToken,
+            PasswordChar = '*',
+            Margin = new Thickness(0, 0, 0, 12)
+        };
+
         var detectButton = new Button { Content = "自动检测" };
         detectButton.Click += (_, _) =>
         {
@@ -63,6 +88,8 @@ public sealed class SecScoreLauncherSettingsPage : UserControl
         saveButton.Click += (_, _) =>
         {
             _config.ExePath = _pathBox.Text.Trim();
+            _config.SecScoreApiUrl = _apiUrlBox.Text.Trim();
+            _config.SecScoreApiToken = _apiTokenBox.Text.Trim();
             _config.Save();
         };
 
@@ -81,6 +108,10 @@ public sealed class SecScoreLauncherSettingsPage : UserControl
         panel.Children.Add(description);
         panel.Children.Add(pathLabel);
         panel.Children.Add(_pathBox);
+        panel.Children.Add(apiUrlLabel);
+        panel.Children.Add(_apiUrlBox);
+        panel.Children.Add(apiTokenLabel);
+        panel.Children.Add(_apiTokenBox);
         panel.Children.Add(buttons);
 
         Content = new ScrollViewer { Content = panel };

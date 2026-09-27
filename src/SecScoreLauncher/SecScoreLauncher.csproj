@@ -6,9 +6,9 @@
         <EnableDynamicLoading>true</EnableDynamicLoading>
         <CreateSrpx>true</CreateSrpx>
         <IsPackable>false</IsPackable>
-        <!-- The SDK is referenced from source because SecRandom.PluginSdk is not published to public feeds. -->
-        <!-- Override with -p:SecRandomSourceDir=... for another checkout. -->
-        <SecRandomSourceDir Condition="'$(SecRandomSourceDir)' == ''">..\..\..\SecRandom</SecRandomSourceDir>
+        <!-- Prefer the host checkout path supplied for this integration; keep the existing checkout as a fallback. -->
+        <SecRandomSourceDir Condition="Exists('..\..\..\secrandom\_src\SecRandom.PluginSdk\SecRandom.PluginSdk.csproj')">..\..\..\secrandom\_src</SecRandomSourceDir>
+        <SecRandomSourceDir Condition="'$(SecRandomSourceDir)' == ''">..\..\..\secrandom_src\SecRandom-master</SecRandomSourceDir>
     </PropertyGroup>
 
     <ItemGroup>

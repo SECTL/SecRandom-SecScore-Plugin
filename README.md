@@ -16,9 +16,9 @@ Windows-focused; on other platforms the button is a logged no-op.
 ## Requirements
 
 - .NET 10 SDK
-- A sibling SecRandom source checkout at `..\SecRandom` (the SDK is not published, so the plugin
-  compiles against it from source). Override `<SecRandomSourceDir>` with
-  `-p:SecRandomSourceDir=...` when using another directory layout.
+- The SecRandom source checkout (the SDK is not published, so the plugin compiles against it from
+  source). The build prefers `D:\code\secrandom\_src` and falls back to
+  `D:\code\secrandom_src\SecRandom-master` when the preferred checkout is unavailable.
 
 ## Build
 
@@ -27,8 +27,8 @@ Because `SecRandom.PluginSdk` is not published to public feeds, the plugin compi
 slow). Two prerequisites:
 
 1. A .NET 10 SDK.
-2. The SecRandom source checkout at the path in `<SecRandomSourceDir>` in
-   `src/SecScoreLauncher/SecScoreLauncher.csproj` (default `..\..\..\SecRandom`).
+2. The SecRandom source checkout at one of the paths selected by `<SecRandomSourceDir>` in
+   `src/SecScoreLauncher/SecScoreLauncher.csproj`.
 
 On a machine with an up-to-date Windows you can build directly:
 
@@ -68,6 +68,12 @@ src/SecScoreLauncher/srpx/SecScoreLauncher.srpx
 
 The button is **not shown by default** — enable it in Settings → Personalized → Floating Window, and
 switch the **SecScore** button on.
+
+After a SecRandom flash draw finishes, the plugin registers the drawn student in SecScore as the
+temporary quick-operation student. A new draw replaces the previous one; three minutes after the
+latest successful registration, the temporary student is removed automatically. Configure the
+SecScore REST API address and optional token in Settings → SecScore. The SecScore REST API must be
+enabled, and authentication must either be disabled or have its token entered in the plugin settings.
 
 ## Configure the SecScore path (optional)
 

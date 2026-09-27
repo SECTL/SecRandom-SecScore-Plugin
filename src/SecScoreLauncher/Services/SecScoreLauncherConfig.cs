@@ -25,6 +25,12 @@ public sealed class SecScoreLauncherConfig
     /// <summary>Tooltip label of the floating-window button.</summary>
     public string ButtonLabel { get; set; } = "积分";
 
+    /// <summary>SecScore REST API base URL used for temporary quick-student registration.</summary>
+    public string SecScoreApiUrl { get; set; } = "http://127.0.0.1:18791";
+
+    /// <summary>Optional SecScore REST API token. Leave empty when API authentication is disabled.</summary>
+    public string SecScoreApiToken { get; set; } = string.Empty;
+
     private void Load()
     {
         try
@@ -36,6 +42,10 @@ public sealed class SecScoreLauncherConfig
                 {
                     ExePath = parsed.ExePath ?? string.Empty;
                     ButtonLabel = string.IsNullOrWhiteSpace(parsed.ButtonLabel) ? "SecScore" : parsed.ButtonLabel!;
+                    SecScoreApiUrl = string.IsNullOrWhiteSpace(parsed.SecScoreApiUrl)
+                        ? "http://127.0.0.1:18791"
+                        : parsed.SecScoreApiUrl!;
+                    SecScoreApiToken = parsed.SecScoreApiToken ?? string.Empty;
                 }
             }
         }
