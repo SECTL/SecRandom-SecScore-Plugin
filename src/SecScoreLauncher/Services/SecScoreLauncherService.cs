@@ -190,8 +190,6 @@ public sealed class SecScoreLauncherService(
     private void OnClick()
     {
         _logger.LogInformation("SecScore floating-window button clicked.");
-        // The click runs on the UI thread; opening/focusing an external app is offloaded so the
-        // floating window stays responsive.
-        Task.Run(() => SecScoreWindowFocus.OpenOrFocus(_config, _logger));
+        _ = SecScoreWindowFocus.OpenOrFocusAsync(_config, _httpClient, _logger);
     }
 }

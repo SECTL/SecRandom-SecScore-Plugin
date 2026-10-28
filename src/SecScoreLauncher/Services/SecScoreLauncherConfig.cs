@@ -72,8 +72,16 @@ public sealed class SecScoreLauncherConfig
     public string? ResolveExecutable()
     {
         var setPath = ExePath.Trim();
-        if (setPath.Length > 0 && File.Exists(setPath))
-            return setPath;
+        if (setPath.Length > 0)
+        {
+            if (Directory.Exists(setPath))
+            {
+                var executableInDirectory = System.IO.Path.Combine(setPath, "SecScore.exe");
+                return File.Exists(executableInDirectory) ? executableInDirectory : null;
+            }
+
+            return File.Exists(setPath) ? setPath : null;
+        }
 
         return AutoDetectPath();
     }
@@ -94,11 +102,9 @@ public sealed class SecScoreLauncherConfig
 
         yield return System.IO.Path.Combine(programFiles, "SecScore", "SecScore.exe");
         yield return System.IO.Path.Combine(programFilesX86, "SecScore", "SecScore.exe");
+        yield return System.IO.Path.Combine(localAppData, "SecScore", "SecScore.exe");
         yield return System.IO.Path.Combine(localAppData, "Programs", "SecScore", "SecScore.exe");
         // Portable layout: a sibling "SecScore" folder next to the running SecRandom.
         yield return System.IO.Path.Combine(productDir, "SecScore.exe");
-        // Development builds on the machine that cloned SecScore.
-        yield return @"D:\code\SecScore\src-tauri\target\release\SecScore.exe";
-        yield return @"D:\code\SecScore\src-tauri\target\debug\SecScore.exe";
     }
 }
